@@ -6,10 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_vehicle")
+@Table(name = "tb_vehicle")
 public class Vehicle implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -21,6 +23,10 @@ public class Vehicle implements Serializable {
 	private String cor;
 	private String placa;
 	private Double valorDaDiaria;
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
 	
 	public Vehicle() {
 	}
@@ -80,6 +86,10 @@ public class Vehicle implements Serializable {
 
 	public void setValorDaDiaria(Double valorDaDiaria) {
 		this.valorDaDiaria = valorDaDiaria;
+	}
+
+	public Client getClient() {
+		return getClient();
 	}
 
 	@Override
