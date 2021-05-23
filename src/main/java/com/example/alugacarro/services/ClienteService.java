@@ -30,4 +30,7 @@ public class ClienteService {
 		return obj.get();
 	}
 	
+	public Client insert(Client obj) {
+		return repository.save(obj);
+	}
 }
