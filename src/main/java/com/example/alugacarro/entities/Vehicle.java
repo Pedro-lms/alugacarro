@@ -1,20 +1,25 @@
 package com.example.alugacarro.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_vehicle")
 public class Vehicle implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -23,11 +28,12 @@ public class Vehicle implements Serializable {
 	private String cor;
 	private String placa;
 	private Double valorDaDiaria;
-	
-	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private Client client;
-	
+
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "tb_vehicle_client", joinColumns = @JoinColumn(name = "vehicle_id"), inverseJoinColumns = @JoinColumn(name = "client"))
+	private Set<Client> clients = new HashSet<>();
+
 	public Vehicle() {
 	}
 

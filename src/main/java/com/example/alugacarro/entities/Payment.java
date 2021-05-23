@@ -1,8 +1,7 @@
 package com.example.alugacarro.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +18,15 @@ public class Payment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
-	private Date dataDevolvida;
-	private Date dataMarcada;
+	private Instant dataDevolvida;
+	private Instant dataMarcada;
 
 	
 	public Payment() {
 		super();
 	}
 
-	public Payment(Long id, Date dataDevolvida, Date dataMarcada) {
+	public Payment(Long id, Instant dataDevolvida, Instant dataMarcada) {
 		this.id = id;
 		this.dataDevolvida = dataDevolvida;
 		this.dataMarcada = dataMarcada;
@@ -42,37 +41,33 @@ public class Payment implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDataDevolvida() {
+	public Instant getDataDevolvida() {
 		return dataDevolvida;
 	}
 
-	public void setDataDevolvida(Date dataDevolvida) {
+	public void setDataDevolvida(Instant dataDevolvida) {
 		this.dataDevolvida = dataDevolvida;
 	}
 
-	public Date getDataMarcada() {
+	public Instant getDataMarcada() {
 		return dataMarcada;
 	}
 
-	public void setDataMarcada(Date dataMarcada) {
+	public void setDataMarcada(Instant dataMarcada) {
 		this.dataMarcada = dataMarcada;
 	}{
 
-	try{
-		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-		Date dataMarcada = (Date) sdformat.parse("2020-01-25");
-		Date dataDevolvida = (Date) sdformat.parse("2020-01-23");
-		System.out.println("Date-1: " + sdformat.format(dataMarcada));
-		System.out.println("Date-2: " + sdformat.format(dataDevolvida));
-		if (dataMarcada.compareTo(dataDevolvida) > 0) {
-			System.out.println("Date-1 is after Date-2");
-		} else if (dataMarcada.compareTo(dataDevolvida) < 0) {
-			System.out.println("Date-1 is before Date-2");
-		} else if (dataMarcada.compareTo(dataDevolvida) == 0) {
-			System.out.println("Date-1 is same as Date-2");
-		}
-	}catch (java.text.ParseException e) {
-		e.printStackTrace();
+	/*SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+	Instant dataMarcada =  sdformat.parse("2020-01-25");
+	Instant dataDevolvida =  sdformat.parse("2020-01-23");
+	System.out.println("Instant-1: " + sdformat.format(dataMarcada));
+	System.out.println("Instant-2: " + sdformat.format(dataDevolvida));*/
+	if (dataMarcada.compareTo(dataDevolvida) > 0) {
+		System.out.println("Instant-1 is after Instant-2");
+	} else if (dataMarcada.compareTo(dataDevolvida) < 0) {
+		System.out.println("Instant-1 is before Instant-2");
+	} else if (dataMarcada.compareTo(dataDevolvida) == 0) {
+		System.out.println("Instant-1 is same as Instant-2");
 	}
 }
 }
